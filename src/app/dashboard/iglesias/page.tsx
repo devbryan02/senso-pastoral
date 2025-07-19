@@ -1,10 +1,5 @@
-function PageIglesia() {
-    return (
-        <div>
-            <h1>Iglesia</h1>
-            <p>Welcome to the Iglesia page!</p>
-        </div>
-    );
-}
+import IglesiasClient from "@/features/iglesias/components/IglesiasClient";
 
-export default PageIglesia;
+export default function IglesiasPage() {
+  return <IglesiasClient />;
+}
