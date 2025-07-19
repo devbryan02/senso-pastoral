@@ -34,38 +34,8 @@ export default function IglesiasClient() {
         </button>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="stat bg-base-100 rounded-xl shadow-sm">
-          <div className="stat-figure text-primary">
-            <Church className="w-8 h-8" />
-          </div>
-          <div className="stat-title">Total Iglesias</div>
-          <div className="stat-value text-primary">{iglesias?.length || 0}</div>
-          <div className="stat-desc">Iglesias registradas</div>
-        </div>
-        
-        <div className="stat bg-base-100 rounded-xl shadow-sm">
-          <div className="stat-figure text-secondary">
-            <Users className="w-8 h-8" />
-          </div>
-          <div className="stat-title">Miembros</div>
-          <div className="stat-value text-secondary">2,400</div>
-          <div className="stat-desc">Miembros activos</div>
-        </div>
-        
-        <div className="stat bg-base-100 rounded-xl shadow-sm">
-          <div className="stat-figure text-accent">
-            <MapPin className="w-8 h-8" />
-          </div>
-          <div className="stat-title">Ubicaciones</div>
-          <div className="stat-value text-accent">12</div>
-          <div className="stat-desc">Ciudades con presencia</div>
-        </div>
-      </div>
-
       {/* Search Bar */}
-      <div className="card bg-base-100 shadow-sm">
+      <div className="card bg-base-200">
         <div className="card-body p-6">
           <IglesiaSearchBar onSearch={handleSearch} />
         </div>

@@ -27,31 +27,6 @@ export function IglesiasList({ iglesias }: { iglesias: Iglesia[] }) {
 
   return (
     <div className="space-y-4">
-      {/* Results header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Church className="w-5 h-5 text-primary" />
-          <span className="text-lg font-medium">
-            {iglesias.length} {iglesias.length === 1 ? 'iglesia encontrada' : 'iglesias encontradas'}
-          </span>
-        </div>
-        
-        <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-sm gap-2">
-            Ordenar por
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-          <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40">
-            <li><a>Nombre A-Z</a></li>
-            <li><a>Nombre Z-A</a></li>
-            <li><a>Fecha de registro</a></li>
-            <li><a>Número de miembros</a></li>
-          </ul>
-        </div>
-      </div>
-
       {/* Grid of cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {iglesias.map((iglesia) => (

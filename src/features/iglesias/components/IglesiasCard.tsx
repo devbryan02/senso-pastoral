@@ -1,9 +1,16 @@
 "use client";
 
 import { Iglesia } from "@/features/iglesias/types";
-import { Church, MapPin, Phone, Users, Edit, Trash2 } from "lucide-react";
+import { Church, MapPin, Users, Edit, Trash2, Building } from "lucide-react";
 
 export function IglesiaCard({ iglesia }: { iglesia: Iglesia }) {
+
+  const formattedDate = new Date(iglesia.fecha_registro).toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+
   return (
     <div className="card bg-base-100 shadow-sm hover:shadow-md transition-shadow duration-200">
       <div className="card-body p-6">
@@ -14,11 +21,11 @@ export function IglesiaCard({ iglesia }: { iglesia: Iglesia }) {
               <Church className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h2 className="card-title text-xl">{iglesia.nombre}</h2>
-              <div className="badge badge-primary badge-outline badge-sm">Activa</div>
+              <h2 className="text-lg font-semibold text-base-content">{iglesia.nombre}</h2>
+              <p className="text-sm text-base-content/70">{formattedDate}</p>
             </div>
           </div>
-          
+
           {/* Actions */}
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-sm btn-circle">
@@ -39,25 +46,21 @@ export function IglesiaCard({ iglesia }: { iglesia: Iglesia }) {
             <MapPin className="w-4 h-4 text-info flex-shrink-0" />
             <span className="text-sm">{iglesia.direccion}</span>
           </div>
-          
+
           <div className="flex items-center gap-3 text-base-content/70">
-            <Phone className="w-4 h-4 text-success flex-shrink-0" />
+            <Building className="w-4 h-4 text-success flex-shrink-0" />
             <span className="text-sm">{iglesia.provincia}</span>
           </div>
         </div>
 
         {/* Stats */}
         <div className="divider my-4"></div>
-        
+
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Users className="w-4 h-4 text-secondary" />
-            <span className="text-sm text-base-content/70">120 miembros</span>
+            <span className="text-sm text-base-content/70">{iglesia.cant_miembros} miembros</span>
           </div>
-          
-          <button className="btn btn-primary btn-sm gap-2">
-            Ver Detalles
-          </button>
         </div>
       </div>
     </div>

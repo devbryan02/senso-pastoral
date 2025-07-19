@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { IglesiaService } from "../service/IglesiaService";
-import { CreateIglesiaRequest, CreateIglesiaResponse, Iglesia, IglesiaUpdateRequest } from "../types";
+import { CreateIglesiaRequest, Iglesia, IglesiaUpdateRequest } from "../types";
 import swal from "sweetalert2";
 
 // funcion para obtener el mensaje de error
@@ -107,7 +107,7 @@ export function useIglesias(){
         }
     };
 
-    //
+    //cargar las primeras 10 iglesias al iniciar el hook
     useEffect(() => {
         fetchIglesias();
     },[]);
@@ -124,6 +124,7 @@ export function useIglesias(){
         fetchIglesias,
         searchIglesias,
         updateIglesia,
-        deleteIglesia
+        deleteIglesia,
+        createIglesia
     };
 }

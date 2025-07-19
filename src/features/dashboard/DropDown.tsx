@@ -1,44 +1,50 @@
-import { User, Settings, LogOut } from 'lucide-react';
 
-function DropDownDashboard() {
+"use client";
+
+import { User, Settings, LogOut } from 'lucide-react';
+import { createClient } from '@/utils/supabase/client';
+
+function DropDownDashboard({ emailUser }: { emailUser: string }) {
+
+    const supabase = createClient();
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        window.location.href = '/auth/login';
+    };
+
     return (
-        <>
-            <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar transition hover:bg-primary/20">
-                    <div className="w-10 rounded-full bg-primary flex items-center justify-center">
-                        <User className="w-6 h-6 text-primary-content" />
+        <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-sm gap-2">
+                <div className="avatar placeholder">
+                    <div className="bg-primary text-primary-content rounded-full w-8 h-8">
+                        <User className="w-4 h-4" />
                     </div>
                 </div>
-                <ul
-                    tabIndex={0}
-                    className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow-lg bg-base-100 rounded-xl w-56 border border-base-200"
-                >
-                    <li>
-                        <a className="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-primary/10 transition">
-                            <User className="w-4 h-4 text-primary" />
-                            Perfil
-                        </a>
-                    </li>
-                    <li>
-                        <a className="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-primary/10 transition">
-                            <Settings className="w-4 h-4 text-primary" />
-                            Configuración
-                        </a>
-                    </li>
-                    <li>
-                        <form action="/api/auth/logout" method="POST">
-                            <button
-                                type="submit"
-                                className="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-error/10 text-error transition w-full"
-                            >
-                                <LogOut className="w-4 h-4" />
-                                Cerrar Sesión
-                            </button>
-                        </form>
-                    </li>
-                </ul>
+                <span className="text-sm font-medium hidden sm:block">{emailUser}</span>
             </div>
-        </>
+            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box w-48 p-2 shadow">
+                <li>
+                    <a className="text-sm">
+                        <User className="w-4 h-4" />
+                        Perfil
+                    </a>
+                </li>
+                <li>
+                    <a className="text-sm">
+                        <Settings className="w-4 h-4" />
+                        Configuración
+                    </a>
+                </li>
+                <div className="divider my-1"></div>
+                <li>
+                    <button type="button" className="text-sm text-error w-full" onClick={handleLogout}>
+                        <LogOut className="w-4 h-4" />
+                        Cerrar Sesión
+                    </button>
+                </li>
+            </ul>
+        </div>
     );
 }
 
